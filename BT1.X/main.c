@@ -23,17 +23,114 @@
 #pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)  
 
 #include <xc.h>
+#include <stdio.h>
 
 #define _XTAL_FREQ 4000000      //Thach Anh 4MHz
 
+void _8_LED();
+void LED_SANG_DUOI();
+void _8_LED_SANG_DUOI_BIT();
+void _16_LED_SANG_DUOI_ARRAY();
+void _16_LED_SANG_DUOI_BIT();
+
 void main(void) {
-    TRISD=0b00000000;
-
-    while (1) {
-        PORTD=0x00;
-        __delay_ms(500);   // Delay 0.5s
-
-        PORTD=0xFF;
-        __delay_ms(500);    
+    TRISC = 0x00;
+    TRISD = 0x00;
+//    _8_LED_SANG_DUOI();
+    while(1)
+    {
+        _16_LED_SANG_DUOI_BIT();
     }
 }
+
+void _8_LED()
+{
+   unsigned int i;
+   for(i = 0; i < 100; i++) 
+   {
+        PORTD=0x00;
+        __delay_ms(100);   // Delay 0.1s
+
+        PORTD=0xFF;
+        __delay_ms(100);    
+    }
+}
+
+void _8_LED_SANG_DUOI_BIT()
+{
+    unsigned int i;
+    PORTC = 0x00;
+    for(i = 0; i < 8; i++) 
+    {
+        PORTD=(unsigned char)(0x80 >> i);
+        __delay_ms(100);   // Delay 0.1s   
+    }
+}
+
+void LED_SANG_DUOI()  
+{  
+    PORTC = 0x80;  // = 1 0 0 0 0 0 0 0  
+    __delay_ms(100);  
+
+    PORTC = 0x40;  // = 0 1 0 0 0 0 0 0  
+    __delay_ms(100);  
+
+    PORTC = 0x20;  // = 0 0 1 0 0 0 0 0  
+    __delay_ms(100);  
+
+    PORTC = 0x10;  // = 0 0 0 1 0 0 0 0  
+    __delay_ms(100);  
+
+    PORTC = 0x08;  // = 0 0 0 0 1 0 0 0  
+    __delay_ms(100);  
+
+    PORTC = 0x04;  // = 0 0 0 0 0 1 0 0  
+    __delay_ms(100);  
+
+    PORTC = 0x02;  // = 0 0 0 0 0 0 1 0  
+    __delay_ms(100);  
+
+    PORTC = 0x01;  // = 0 0 0 0 0 0 0 1  
+    __delay_ms(100);  
+    
+}  
+
+void _16_LED_SANG_DUOI_ARRAY()
+{
+    unsigned char DATA[]={ 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 };
+    PORTC = 0;
+    for (unsigned int i=0; i<8; i++)
+    {
+        PORTD = DATA[i];
+        __delay_ms(100);
+    }
+    PORTD = 0;
+    
+    for (unsigned char i=0; i<8; i++)
+    {
+        PORTC = DATA[i];
+        __delay_ms(100);
+    }
+    PORTC = 0;
+}
+
+void _16_LED_SANG_DUOI_BIT()
+{
+    unsigned int i;
+    PORTC = 0x00;
+    for(i = 0; i < 8; i++) 
+    {
+        PORTD=(unsigned char)(0x80 >> i);
+        __delay_ms(100);   // Delay 0.1s   
+    }
+    PORTD = 0x00;
+    
+    for(i = 0; i < 8; i++) 
+    {
+        PORTC=(unsigned char)(0x80 >> i);
+        __delay_ms(100);   // Delay 0.1s   
+    }
+    PORTC = 0x00;
+}
+
+
