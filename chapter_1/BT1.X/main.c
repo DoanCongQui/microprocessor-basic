@@ -5,7 +5,6 @@
  * Created on February 25, 2025, 11:11 PM
  */
 
-
 // PIC16F887 Configuration Bit Settings
 
 // 'C' source line config statements
@@ -31,7 +30,6 @@ void _8_LED_SANG_DUOI();
 
 void main(void) {
     TRISD = 0x00;
-    
     while(1)
     {
         _8_LED_SANG_DUOI();
@@ -45,6 +43,6 @@ void _8_LED_SANG_DUOI()
     for(i = 0; i < 8; i++) 
     {
         PORTD=(unsigned char)(0x80 >> i);
-        __delay_ms(400);   // Delay 0.1s   
+        __delay_ms(400);   // Delay 0.4s   
     }
 }
