@@ -27,35 +27,24 @@
 
 #define _XTAL_FREQ 4000000      //Thach Anh 4MHz
 
-//void _8_LED();
-//void LED_SANG_DUOI();
-//void _8_LED_SANG_DUOI_BIT();
-//void _16_LED_SANG_DUOI_ARRAY();
-//void _16_LED_SANG_DUOI_BIT();
-void _8_LED_SANG_DUOI_SUOI();
-void _8_LED_SANG_DUOI_NGUOC();
-void _16_LED_SANG_DUOI_SUOI();
-void _16_LED_SANG_DUOI_NGUOC();
-void _LED_DUOI_2_BEN_VAO();
-void _LED_SANG_DAN();
+void _8_LED_SANG_DUOI();
 
 void main(void) {
-    TRISC = 0x00;
     TRISD = 0x00;
     
     while(1)
     {
-        _8_LED_SANG_DUOI_SUOI();
+        _8_LED_SANG_DUOI();
     }
 }
 
-void _8_LED_SANG_DUOI_SUOI()
+void _8_LED_SANG_DUOI()
 {
-    unsigned int i;
+    unsigned char i;
     PORTC = 0x00;
     for(i = 0; i < 8; i++) 
     {
         PORTD=(unsigned char)(0x80 >> i);
-        __delay_ms(100);   // Delay 0.1s   
+        __delay_ms(400);   // Delay 0.1s   
     }
 }
