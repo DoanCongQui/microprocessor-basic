@@ -22,9 +22,15 @@
 
 #define _XTAL_FREQ 4000000  
 
-void main ()
-{
-    lcd_init(); // On LCD
-    lcd_puts("\f DH CONG NGHIEP\n ** TP HCM ** ");
+void main(void) {
+    lcd_init();
+    while(1){
+        lcd_puts("\f DOAN CONG QUI\n MSSV: 22696151 ");
+        __delay_ms(2000);
+        lcd_puts("\f NS: 01-12-2004\n NS: BEN TRE ");
+        __delay_ms(2000);
+        lcd_puts("\fHKTT: BTRI-BTRE\nLOP: DHDTMT18ATT ");
+        __delay_ms(2000);
+    }
     while(1);
 }
