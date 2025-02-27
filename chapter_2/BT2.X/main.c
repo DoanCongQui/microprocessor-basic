@@ -48,18 +48,34 @@ void main(void) {
     CGRAM();
     lcd_putc('\f');
     while(1){
+        
+        /*
+         ==========================
+         *         LCD 1          *
+         ==========================
+         */
         for(i=0;i<=12;i++)
             lcd_putc(dat_line1[i]);
         lcd_puts(dat_line2);
         __delay_ms(2000);
         lcd_putc('\f');
         
+        /*
+         ==========================
+         *         LCD 2          *
+         ==========================
+         */
         lcd_puts(dat_line3);
         for(i=0;i<=6;i++)
             lcd_putc(dat_line4[i]);
         __delay_ms(2000);
         lcd_putc('\f');
         
+        /*
+         ==========================
+         *         LCD 3          *
+         ==========================
+         */
         for(i=0;i<=14;i++)
             lcd_putc(dat_line5[i]);
         lcd_putc('\n');
