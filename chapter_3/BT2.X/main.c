@@ -46,6 +46,7 @@ void import_port()
 }
 
 void main(void) {
+    PORTB = 0x07;
     import_port();
     push_count = 0;
     lcd_init();
