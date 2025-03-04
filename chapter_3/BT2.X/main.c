@@ -2,7 +2,7 @@
  * File:   main.c
  * Author: dq
  *
- * Created on March 4, 2025, 1:59 PM
+ * Created on March 4, 2025, 2:34 PM
  */
 
 // CONFIG1
@@ -32,37 +32,72 @@ void import_port()
     TRISE2 = 0;
     
     PORTE=0;
-    TRISB0 = 1;
+    TRISB = 0x07;
     nRBPU = 0;
-    WPUB = 0x01;
+    WPUB = 0x07;
     
-    INTEDG = 1;
-    INTF = 0;
-    INTE = 1;
+    IOCB = 0x07;
+    
+    RBIF = 0;
+    RBIE = 1;
     GIE = 1;
+    
+    PORTB;
 }
 
 void main(void) {
     import_port();
     push_count = 0;
     lcd_init();
-    lcd_gotoxy(5, 0);
-    lcd_puts("CONG QUI");
-    lcd_gotoxy(8, 1); 
+    lcd_gotoxy(0, 0);
+    lcd_puts("S1");
+    lcd_gotoxy(0, 1); 
+    lcd_puts("00"); 
+    lcd_gotoxy(7, 0);
+    lcd_puts("S2");
+    lcd_gotoxy(7, 1); 
+    lcd_puts("00"); 
+    lcd_gotoxy(14, 0);
+    lcd_puts("S3");
+    lcd_gotoxy(14, 1); 
     lcd_puts("00"); 
     while(1);
 }
 
 void __interrupt() isr(void)
 {
-    INTF = 0;
-    char data[4];
-    __delay_ms(200);
-    push_count++;
+    PORTB;
+    RBIF = 0;
+    char data_1[4];
+    char data_2[4];
+    char data_3[4];
+    __delay_ms(50);
     
-    if(push_count>20) {push_count=0;}
-    lcd_gotoxy(8, 1);
-    sprintf(data, "%.2d", push_count);
-    lcd_puts(data); 
+    if (!RB0)
+    {
+        push_count++;
+        if(push_count>10) {push_count=0;}
+        lcd_gotoxy(0, 1);
+        sprintf(data_1, "%.2d", push_count);
+        lcd_puts(data_1);
+    }
+    
+    if (!RB1)
+    {
+        push_count++;
+        if(push_count>10) {push_count=0;}
+        lcd_gotoxy(7, 1);
+        sprintf(data_2, "%.2d", push_count);
+        lcd_puts(data_2);
+    }
+    
+    if (!RB2)
+    {
+        push_count++;
+        if(push_count>10) {push_count=0;}
+        lcd_gotoxy(14, 1);
+        sprintf(data_3, "%.2d", push_count);
+        lcd_puts(data_3);
+    }
 }
 
