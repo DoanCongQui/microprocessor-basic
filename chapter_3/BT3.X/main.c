@@ -26,24 +26,24 @@ void CGRAM();
 void _8_LED_DUOI(unsigned char n);
 void import_port();
 
-const char dat_line1[] = {0x00,'o',0x03,'n',' ','C',0x04,'n','g',' ','Q','u',0x05}; 
-const char dat_line2[] = {'B',0x03,'i',' ','T',0x01,'p',' ','N','g',0x02,'t'}; 
+const char dat_line1[] = {'B',0x02,'i',' ','T',0x00,'p',' ','N','g',0x01,'t'};
+
+// Thay ??i tên //
+const char dat_line2[] = {0x05,'o',0x02,'n',' ','C',0x03,'n','g',' ','Q','u',0x04}; 
 
 const char cgram_dat[] = {
-    0X0E,0X09,0X09,0X1D,0X09,0X09,0X0E,0X00, // Ð
-//    1, 10, 20, 8, 20, 28, 16, 12, // ?
-    4, 10, 6, 1, 7, 9, 15, 0,
-    4, 8, 6, 1, 7, 9, 15, 0 ,
-//    8, 22, 2, 12, 18, 18, 12, 0, // ?
+    4, 10, 6, 1, 7, 9, 15, 0, //? 
+    4, 8, 6, 1, 7, 9, 15, 0 , // ?
     2, 1, 14, 1, 15, 17, 15, 0 , // à --
+    
+    // Thay ??i tên //
     12, 18, 12, 18, 18, 18, 12, 0,  // ô --
     2, 4, 0, 12, 4, 4, 14, 0, // í --
-//    0, 6, 2, 12, 18, 18, 12, 0, // ?
+    0X0E,0X09,0X09,0X1D,0X09,0X09,0X0E,0X00, // Ð
     0x99 };
 
 void main(void) {
     unsigned char j;
-    
     lcd_init(); 
     CGRAM();
     lcd_putc('\f');
@@ -52,9 +52,9 @@ void main(void) {
     while(1)
     {
         lcd_gotoxy(2, 0);
-        for(j=0; j<=11; j++) {lcd_putc(dat_line2[j]);}
+        for(j=0; j<=11; j++) {lcd_putc(dat_line1[j]);}
         lcd_gotoxy(2, 1);
-        for(j=0; j<=12; j++) {lcd_putc(dat_line1[j]);}
+        for(j=0; j<=12; j++) {lcd_putc(dat_line2[j]);}
         __delay_ms(700);
         lcd_putc('\f');
         __delay_ms(700);
@@ -101,7 +101,6 @@ void CGRAM()
         i++;
     }
 }
-
 
 void _8_LED_DUOI(unsigned char n){
     while(n--){
