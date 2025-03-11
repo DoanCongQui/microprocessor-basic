@@ -36,7 +36,7 @@ void CGRAM();
 void import_port();
 void delay100us(unsigned int n);
 
-const char dat_line1[] = {'B',0x02,'i',' ','T',0x00,'p',' ','T','i','m','e','r',' ', '0'};
+const char dat_line1[] = {'B',0x02,'i',' ','T',0x00,'p',' ','T','i','m','e','r',' ', '1'};
 
 // Thay ??i tên //
 const char dat_line2[] = {0x05,'o',0x02,'n',' ','C',0x03,'n','g',' ','Q','u',0x04}; 
