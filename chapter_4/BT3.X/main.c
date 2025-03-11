@@ -138,15 +138,13 @@ void import_port()
 // Timer 0
 void delay100us(unsigned int n)
 { 
-    while(n--) 
+    while(n--)
     {
-        TMR1H= 255; TMR1L= 231;
-        TMR1IF = 0;//xóa c? ng?t
-        TMR1CS = 0; //ch? ?? ??nh th?i
-        GIE=PEIE =TMR1IE = 0;// c?m ng?t
-        T1CKPS1 = 1; T1CKPS0 = 0;//prescaler= 4
-        TMR1ON = 1; //cho phép Timer 1 ho?t ??ng
-        T1SYNC=1; //không ??ng b? xung ck
-        while(TMR1IF==0); 
-    }
+        TMR0 = 231;
+        TMR0IF = 0; //xóa c? ng?t
+        T0CS = 0; //ch? ?? ??nh th?i
+        GIE=PEIE =TMR0IE = 0;//c?m ng?t
+        PSA = 0; PS2 = 0; PS1 = 0; PS0 = 1; //prescaler=4
+        while(TMR0IF==0); 
+    } 
 }
