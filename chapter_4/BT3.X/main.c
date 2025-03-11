@@ -135,6 +135,7 @@ void import_port()
     TMR1ON=1;
 }
 
+// Timer 0
 void delay100us(unsigned int n)
 { 
     while(n--) 
