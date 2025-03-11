@@ -48,7 +48,7 @@ void main()
     CGRAM();
     lcd_putc('\f'); 
     lcd_gotoxy(2, 0);
-    for(int i = 0 ;i <= sizeof(dat_line1)-1; i++){ lcd_putc(dat_line1[i]);}
+    for(int i = 0 ;i < sizeof(dat_line1); i++){ lcd_putc(dat_line1[i]);}
     lcd_gotoxy(8, 1); 
     lcd_puts("00"); 
     while(1){
